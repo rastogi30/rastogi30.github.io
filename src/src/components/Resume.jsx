@@ -25,16 +25,18 @@ function Resume() {
         <div className="space-y-2">
           <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Resume ready on request</h2>
           <p className="text-sm leading-relaxed text-[var(--text-muted)]">
-            Download the one-page summary. The living resume will be refreshed with ongoing work before interviews.
+            Open the latest one-page summary in a new tab. For tailored updates, reach out ahead of interviews.
           </p>
         </div>
         <motion.a
           href="https://drive.google.com/file/d/1m8gtWz-iksIFG1OzvTyiSiDMPQZX1VSN/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.97 }}
           className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)] px-6 py-3 text-sm font-semibold text-[var(--cta-text)]"
         >
-          Download Resume
+          View Resume
         </motion.a>
       </motion.div>
     </motion.section>
