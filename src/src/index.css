@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Poppins:wght@600&display=swap");
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: #f9fafb;
+    --card: #ffffff;
+    --text-primary: #111827;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+    --accent-secondary: #7c3aed;
+    --cta-text: #ffffff;
+    --shadow-soft: 0 18px 60px rgba(15, 23, 42, 0.08);
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: #0b0f1a;
+    --card: #111827;
+    --text-primary: #e5e7eb;
+    --text-muted: #9ca3af;
+    --border: #1f2937;
+    --accent: #6ee7f9;
+    --accent-secondary: #a78bfa;
+    --cta-text: #0b0f1a;
+    --shadow-soft: 0 18px 60px rgba(8, 11, 22, 0.65);
+  }
+
+  html {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--text-primary);
+  }
+
+  ::selection {
+    background-color: rgba(110, 231, 249, 0.2);
+    color: var(--text-primary);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
