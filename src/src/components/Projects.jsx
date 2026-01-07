@@ -201,7 +201,7 @@ function Projects() {
       <motion.div {...fadeIn(0.4)} className="mt-16">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <h3 className="text-lg font-semibold text-[var(--text-primary)]">
-            Mini Projects
+            Practice Projects & UI Experiments
           </h3>
           <div className="hidden sm:block h-px flex-1 bg-gradient-to-r from-transparent via-[var(--border)] to-transparent" />
         </div>
@@ -281,6 +281,11 @@ function Projects() {
                 <p className="mt-1 text-xs text-[var(--text-muted)]">
                   {script.description}
                 </p>
+                <br/>
+                <p className="mt-1 text-xs italic text-[var(--text-muted)]">
+                  Built strictly for academic learning and experimentation purposes.
+                </p>
+
                 <a
                   href={script.github}
                   target="_blank"
