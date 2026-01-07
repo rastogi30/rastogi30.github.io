@@ -12,7 +12,7 @@ const fadeIn = (delay = 0) => ({
   viewport: { once: true, amount: 0.25 },
 });
 
-function Contact() {
+export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null); // success | error
 
@@ -21,20 +21,18 @@ function Contact() {
     setLoading(true);
     setStatus(null);
 
-    const form = e.target;
-
     try {
       await emailjs.sendForm(
-        "service_iatyefj",      // ✅ Service ID
-        "template_k4tvj0k",     // ✅ Template ID
-        form,
-        "Ukq8eOwS0nLjndjUE"     // ✅ Public Key
+        "service_iatyefj",
+        "template_k4tvj0k",
+        e.target,
+        "Ukq8eOwS0nLjndjUE"
       );
 
       setStatus("success");
-      form.reset();
-    } catch (error) {
-      console.error("EmailJS Error:", error);
+      e.target.reset();
+    } catch (err) {
+      console.error(err);
       setStatus("error");
     } finally {
       setLoading(false);
@@ -44,45 +42,49 @@ function Contact() {
   return (
     <motion.section
       id="contact"
-      {...fadeIn(0.18)}
-      className="mx-auto max-w-6xl px-6 pb-24 sm:px-8"
+      {...fadeIn(0.15)}
+      className="mx-auto max-w-6xl px-6 pb-28 sm:px-8"
     >
-      <div className="grid gap-12 lg:grid-cols-2">
+      <div className="grid gap-14 lg:grid-cols-2">
         {/* Left content */}
-        <motion.div {...fadeIn(0.02)} className="space-y-6">
-          <div className="space-y-3">
-            <span className="text-sm uppercase tracking-[0.24em] text-[var(--text-muted)]">
-              Contact
-            </span>
-            <h2 className="text-3xl font-semibold text-[var(--text-primary)] sm:text-4xl">
-              Let’s explore your next build.
-            </h2>
-            <p className="text-base text-[var(--text-muted)]">
-              Share your idea or problem — I usually respond within 1–2 days.
-            </p>
-          </div>
+        <motion.div {...fadeIn(0)} className="space-y-6">
+          <span className="text-xs uppercase tracking-[0.32em] text-[var(--text-muted)]">
+            Contact
+          </span>
 
-          <a
-            href="mailto:anshrastogi3007@gmail.com"
-            className="block text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-secondary)]"
-          >
-            anshrastogi3007@gmail.com
-          </a>
+          <h2 className="text-3xl font-semibold text-[var(--text-primary)] sm:text-4xl">
+            Let’s build something meaningful.
+          </h2>
+
+          <p className="max-w-md text-sm leading-relaxed text-[var(--text-muted)]">
+            Have an idea, opportunity, or just want to connect?  
+            Drop a message — it goes straight to my inbox.
+          </p>
+
+          <div className="rounded-xl border border-[var(--border)]/60 bg-[var(--card)]/60 px-4 py-3 text-xs text-[var(--text-muted)]">
+            ⏱ Usually responds within 24–48 hours
+          </div>
         </motion.div>
 
-        {/* Contact form */}
+        {/* Contact Form */}
         <motion.form
-          {...fadeIn(0.06)}
+          {...fadeIn(0.08)}
           onSubmit={handleSubmit}
-          className="space-y-5 rounded-2xl border border-[var(--border)] bg-[var(--card)]/90 p-6 shadow-[var(--shadow-soft)]"
+          className="space-y-5 rounded-3xl border border-[var(--border)]/70 bg-[var(--card)]/90 p-6 shadow-[var(--shadow-soft)] backdrop-blur sm:p-7"
         >
-          <Field label="Name" name="from_name" placeholder="Enter your name" />
           <Field
-            label="Email"
+            label="Your Name"
+            name="from_name"
+            placeholder="Enter your name"
+          />
+
+          <Field
+            label="Your Email"
             name="from_email"
-            placeholder="Enter your email address"
+            placeholder="Enter your email"
             type="email"
           />
+
           <Field
             as="textarea"
             label="Message"
@@ -94,22 +96,23 @@ function Contact() {
           <motion.button
             type="submit"
             disabled={loading}
-            whileHover={{ scale: loading ? 1 : 1.02 }}
+            whileHover={{ scale: loading ? 1 : 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)] px-6 py-3 text-sm font-semibold text-[var(--cta-text)] disabled:opacity-60"
+            className="w-full rounded-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)] px-6 py-3 text-sm font-semibold text-[var(--cta-text)] transition-all disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {loading ? "Sending..." : "Send Message"}
+            {loading ? "Sending…" : "Send Message"}
           </motion.button>
 
-          {/* Status messages */}
+          {/* Status feedback */}
           {status === "success" && (
-            <p className="text-sm text-green-500">
-              ✅ Message sent successfully!
+            <p className="text-sm text-emerald-500">
+              ✅ Message sent successfully. I’ll get back to you soon!
             </p>
           )}
+
           {status === "error" && (
             <p className="text-sm text-red-500">
-              ❌ Failed to send message. Please try again.
+              ❌ Something went wrong. Please try again.
             </p>
           )}
         </motion.form>
@@ -127,19 +130,21 @@ function Field({
   rows,
 }) {
   const Component = as;
+
   return (
-    <label className="flex flex-col gap-2 text-sm text-[var(--text-muted)]">
-      {label}
+    <label className="flex flex-col gap-2 text-sm">
+      <span className="font-medium text-[var(--text-muted)]">
+        {label}
+      </span>
+
       <Component
         name={name}
-        placeholder={placeholder}
-        rows={rows}
         type={type}
+        rows={rows}
+        placeholder={placeholder}
         required
-        className="w-full rounded-xl border border-[var(--border)] bg-transparent px-4 py-3 text-sm text-[var(--text-primary)] outline-none transition-colors focus:border-[var(--accent)]"
+        className="w-full rounded-xl border border-[var(--border)] bg-transparent px-4 py-3 text-sm text-[var(--text-primary)] outline-none transition-all focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]/40"
       />
     </label>
   );
 }
-
-export default Contact;

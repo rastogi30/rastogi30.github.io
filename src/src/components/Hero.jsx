@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaHackerrank } from "react-icons/fa";
-import { SiLeetcode } from "react-icons/si";
+import { SiLeetcode, SiCodeforces } from "react-icons/si";
 
 const containerMotion = {
   hidden: { opacity: 0, y: 36 },
@@ -25,10 +25,11 @@ const itemMotion = {
 };
 
 const socials = [
-  { name: "GitHub", icon: <FaGithub />, link: "https://github.com/yourusername" },
-  { name: "LinkedIn", icon: <FaLinkedin />, link: "https://linkedin.com/in/yourusername" },
-  { name: "LeetCode", icon: <SiLeetcode />, link: "https://leetcode.com/yourusername" },
-  { name: "HackerRank", icon: <FaHackerrank />, link: "https://hackerrank.com/yourusername" },
+  { name: "GitHub", icon: <FaGithub />, link: "https://github.com/rastogi30" },
+  { name: "LinkedIn", icon: <FaLinkedin />, link: "https://www.linkedin.com/in/ansh30/" },
+  { name: "LeetCode", icon: <SiLeetcode />, link: "https://leetcode.com/u/llansh_01ll/" },
+  { name: "HackerRank", icon: <FaHackerrank />, link: "https://www.hackerrank.com/profile/lakhanrastogi201" },
+  { name: "Codeforces", icon: <SiCodeforces />, link: "https://codeforces.com/profile/llansh_01ll" },
 
 ];
 
