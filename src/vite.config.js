@@ -9,8 +9,9 @@
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { SiTailwindcss } from 'react-icons/si'
 
 export default defineConfig({
   base: '/',
-  plugins: [react(),ta],
+  plugins: [react(),SiTailwindcss()],
 })
